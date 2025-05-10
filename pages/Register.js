@@ -1,10 +1,19 @@
+import Input from '../components/Input'; // Adjust the path as needed
+import Button from '../components/Button'; // Adjust the path as needed
+import AuthLayout from '../components/AuthLayout'; // Adjust the path as needed
+
 function Register({ onSwitchToLogin }) {
     try {
         const [formData, setFormData] = React.useState({
             name: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            dob: '',
+            donorId: '',
+            countryCode: '+254',
+            mobile: '',
+            location: ''
         });
         const [errors, setErrors] = React.useState({});
         const [isLoading, setIsLoading] = React.useState(false);
