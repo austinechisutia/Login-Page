@@ -1,20 +1,14 @@
-function Button({ onClick, children, type = 'button', variant = 'primary', isLoading = false }) {
+function Button({ children, onClick, loading, ...props }) {
     try {
-        const baseStyles = "font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline";
-        const variants = {
-            primary: "bg-red-600 hover:bg-red-700 text-white",
-            secondary: "bg-gray-600 hover:bg-gray-700 text-white"
-        };
-
         return (
             <button
-                type={type}
-                className={`${baseStyles} ${variants[variant]} ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onClick={onClick}
-                disabled={isLoading}
+                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 disabled:bg-blue-400"
+                disabled={loading}
                 data-name="button"
+                {...props}
             >
-                {isLoading ? (
+                {loading ? (
                     <span data-name="button-loading">
                         <i className="fas fa-spinner fa-spin mr-2"></i>
                         Loading...
