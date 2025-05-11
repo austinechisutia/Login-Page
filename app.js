@@ -1,17 +1,21 @@
+
 function App() {
     try {
         const [isLogin, setIsLogin] = React.useState(true);
 
-        const handleSwitchToRegister = () => setIsLogin(false);
-        const handleSwitchToLogin = () => setIsLogin(true);
+        const toggleForm = () => {
+            setIsLogin(!isLogin);
+        };
 
         return (
-            <div data-name="app">
-                {isLogin ? (
-                    <Login onSwitchToRegister={handleSwitchToRegister} />
-                ) : (
-                    <Register onSwitchToLogin={handleSwitchToLogin} />
-                )}
+            <div className="auth-container flex items-center justify-center p-4" data-name="auth-container">
+                <div className="auth-card w-full max-w-md p-8" data-name="auth-card">
+                    {isLogin ? (
+                        <LoginForm onToggleForm={toggleForm} />
+                    ) : (
+                        <RegisterForm onToggleForm={toggleForm} />
+                    )}
+                </div>
             </div>
         );
     } catch (error) {
