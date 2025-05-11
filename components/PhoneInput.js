@@ -1,3 +1,17 @@
+const countryCodes = [
+    { country: 'United States', code: '+1' },
+    { country: 'United Kingdom', code: '+44' },
+    { country: 'China', code: '+86' },
+    { country: 'India', code: '+91' },
+    { country: 'Japan', code: '+81' },
+    { country: 'Germany', code: '+49' },
+    { country: 'France', code: '+33' },
+    { country: 'Italy', code: '+39' },
+    { country: 'Canada', code: '+1' },
+    { country: 'Australia', code: '+61' },
+    // Add more country codes as needed
+];
+
 function PhoneInput({ value, onChange, error, ...props }) {
     try {
         const [countryCode, setCountryCode] = React.useState('+1');
@@ -7,13 +21,16 @@ function PhoneInput({ value, onChange, error, ...props }) {
         const dropdownRef = React.useRef(null);
 
         React.useEffect(() => {
-            onChange({
-                target: {
-                    name: 'phone',
-                    value: `${countryCode}${phoneNumber}`
-                }
-            });
-        }, [countryCode, phoneNumber]);
+            // Only trigger onChange when we have both country code and phone number
+            if (phoneNumber) {
+                onChange({
+                    target: {
+                        name: 'phone',
+                        value: `${countryCode}${phoneNumber}`
+                    }
+                });
+            }
+        }, [countryCode, phoneNumber, onChange]);
 
         React.useEffect(() => {
             function handleClickOutside(event) {
@@ -28,38 +45,38 @@ function PhoneInput({ value, onChange, error, ...props }) {
         }, []);
 
         const handlePhoneChange = (e) => {
-            const value = e.target.value.replace(/\D/g, '');
+            const value = e.target.value.replace(/\D/g, '').slice(0, 15);
             setPhoneNumber(value);
         };
 
         const handleKeyPress = (e) => {
             const key = e.key.toLowerCase();
             if (key.length === 1 && /[a-z]/.test(key)) {
-                setSearchTerm(key);
+                setSearchTerm(prev => prev + key);
             }
         };
 
         const filteredCountries = countryCodes.filter(country => 
-            country.country.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
+            country.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
             country.code.includes(searchTerm)
         );
 
         return (
             <div className="mb-4" data-name="phone-input-container">
-                <label className="form-label" data-name="phone-input-label">
+                <label className="block text-sm font-medium text-gray-700 mb-1" data-name="phone-input-label">
                     Mobile Number
                 </label>
                 <div className="flex gap-2" data-name="phone-input-wrapper">
                     <div className="relative w-48" data-name="country-select-container">
                         <button
                             type="button"
-                            className="form-input w-full text-left flex items-center justify-between"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-left focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                             onClick={() => setIsOpen(!isOpen)}
                             onKeyDown={handleKeyPress}
                             data-name="country-select-button"
                         >
                             <span>{countryCode} {countryCodes.find(c => c.code === countryCode)?.country}</span>
-                            <i className={`fas fa-chevron-${isOpen ? 'up' : 'down'}`}></i>
+                            <i className={`fas fa-chevron-${isOpen ? 'up' : 'down'} float-right mt-1`}></i>
                         </button>
                         {isOpen && (
                             <div 
@@ -88,15 +105,24 @@ function PhoneInput({ value, onChange, error, ...props }) {
                     </div>
                     <input
                         type="tel"
-                        className={`form-input flex-1 ${error ? 'border-red-500' : ''}`}
+                        className={`flex-1 px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 ${
+                            error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : 'border-gray-300'
+                        }`}
                         value={phoneNumber}
                         onChange={handlePhoneChange}
                         placeholder="Enter phone number"
+                        maxLength="15"
+                        pattern="[0-9]*"
+                        inputMode="numeric"
                         {...props}
                         data-name="phone-number-input"
                     />
                 </div>
-                {error && <p className="form-error" data-name="phone-input-error">{error}</p>}
+                {error && (
+                    <p className="mt-1 text-sm text-red-600" data-name="phone-input-error">
+                        {error}
+                    </p>
+                )}
             </div>
         );
     } catch (error) {
