@@ -27,3 +27,22 @@
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
+
+/* Phone Input Component Styles */
+.country-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.country-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.country-dropdown::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.country-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

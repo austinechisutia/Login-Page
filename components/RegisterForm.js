@@ -41,10 +41,11 @@ function RegisterForm({ onToggleForm }) {
         };
 
         const handleChange = (e) => {
-            setFormData({
-                ...formData,
-                [e.target.name]: e.target.value
-            });
+            const { name, value } = e.target;
+            setFormData(prev => ({
+                ...prev,
+                [name]: value
+            }));
         };
 
         return (
@@ -94,7 +95,12 @@ function RegisterForm({ onToggleForm }) {
 
                     <PhoneInput
                         value={formData.phone}
-                        onChange={handleChange}
+                        onChange={(e) => handleChange({
+                            target: {
+                                name: 'phone',
+                                value: e.target.value
+                            }
+                        })}
                         error={errors.phone}
                     />
 
