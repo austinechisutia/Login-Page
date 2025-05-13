@@ -18,7 +18,7 @@
 }
 
 .auth-card {
-    background-color: white;
+    background-color: #3b3b3b;
     border-radius: 1rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     position: relative;
@@ -26,14 +26,14 @@
 }
 
 .auth-title {
-    color: #1f2937;
+    color: #f8f9fa;
     font-size: 1.875rem;
     line-height: 2.25rem;
     font-weight: 700;
 }
 
 .auth-subtitle {
-    color: #6b7280;
+    color: #d8dada;
     margin-top: 0.5rem;
 }
 

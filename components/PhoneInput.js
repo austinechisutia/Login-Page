@@ -63,7 +63,7 @@ function PhoneInput({ value, onChange, error, ...props }) {
 
         return (
             <div className="mb-4" data-name="phone-input-container">
-                <label className="block text-sm font-medium text-gray-700 mb-1" data-name="phone-input-label">
+                <label className="block text-sm font-medium text-white mb-1">
                     Mobile Number
                 </label>
                 <div className="flex gap-2" data-name="phone-input-wrapper">

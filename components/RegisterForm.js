@@ -8,6 +8,7 @@ function RegisterForm({ onToggleForm }) {
             dateOfBirth: '',
             donorId: '',
             phone: '',
+            bloodTypes: '',
             location: ''
         });
         const [errors, setErrors] = React.useState({});
@@ -124,15 +125,12 @@ function RegisterForm({ onToggleForm }) {
                         error={errors.dateOfBirth}
                         data-name="register-dob-input"
                     />
-                    <Input
-                        type="date"
-                        label="Blood Type"
-                        name="dateOfBirth"
-                        value={formData.dateOfBirth}
+                    <BloodGroupInput
+                        value={formData.bloodGroup}
                         onChange={handleChange}
-                        error={errors.dateOfBirth}
-                        data-name="register-dob-input"
+                        error={errors.bloodGroup}
                     />
+
 
                     <Input
                         type="password"
@@ -161,7 +159,7 @@ function RegisterForm({ onToggleForm }) {
                     )}
 
                     <Button type="submit" loading={loading} data-name="register-submit-button">
-                        Register as Donor
+                        Join Esclapian
                     </Button>
 
                     <p className="mt-4 text-center text-gray-600" data-name="register-login-prompt">
