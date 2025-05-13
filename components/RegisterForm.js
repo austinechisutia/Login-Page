@@ -62,7 +62,7 @@ function RegisterForm({ onToggleForm }) {
                 <form onSubmit={handleSubmit} className="mt-8" data-name="register-form-container">
                     <Input
                         type="text"
-                        label="Full Name"
+                        label="Nickname"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
@@ -89,7 +89,7 @@ function RegisterForm({ onToggleForm }) {
                         value={formData.email}
                         onChange={handleChange}
                         error={errors.email}
-                        placeholder="Enter your email"
+                        placeholder="your@email.com"
                         data-name="register-email-input"
                     />
 
@@ -118,6 +118,15 @@ function RegisterForm({ onToggleForm }) {
                     <Input
                         type="date"
                         label="Date of Birth"
+                        name="dateOfBirth"
+                        value={formData.dateOfBirth}
+                        onChange={handleChange}
+                        error={errors.dateOfBirth}
+                        data-name="register-dob-input"
+                    />
+                    <Input
+                        type="date"
+                        label="Blood Type"
                         name="dateOfBirth"
                         value={formData.dateOfBirth}
                         onChange={handleChange}
