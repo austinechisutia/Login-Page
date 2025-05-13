@@ -57,7 +57,7 @@ function RegisterForm({ onToggleForm }) {
                     className="hospital-logo mx-auto"
                     data-name="hospital-logo"
                 />
-                <h1 className="auth-title text-center">Donais Hospital</h1>
+                <h1 className="auth-title text-center">Esclapian</h1>
                 <p className="auth-subtitle text-center">Register as a Blood Donor</p>
 
                 <form onSubmit={handleSubmit} className="mt-8" data-name="register-form-container">

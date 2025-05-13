@@ -52,7 +52,7 @@ function LoginForm({ onToggleForm }) {
                         />
                         <i className="fas fa-heart text-red-500 text-3xl"></i>
                     </div>
-                    <h1 className="auth-title">Donais Hospital</h1>
+                    <h1 className="auth-title">Esclapian</h1>
                     <p className="auth-subtitle">Welcome to Blood Donation System</p>
                 </div>
 
